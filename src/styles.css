@@ -1,0 +1,63 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  height: 780px;
+}
+.flex {
+  display: flex;
+}
+.subject {
+  text-align: left;
+  padding-left: 5px;
+}
+.info {
+  font-size: smaller;
+}
+.info span {
+  padding: 5px;
+}
+
+.header {
+  display: block;
+  height: 6%;
+  width: 100%;
+  background-color: #093757;
+  color: white;
+  padding: 6px;
+  font-style: "Times New Roman";
+  position: fixed;
+  top: 0px;
+}
+
+.main {
+  display: flex;
+  height: 91%;
+  overflow: hidden;
+  position: relative;
+  top: 48px;
+  width: 100%;
+}
+.left {
+  width: 30%;
+  background-color: yellow;
+  height: 100%;
+  overflow: auto;
+}
+
+.left button {
+  padding-top: 5px;
+}
+
+.right {
+  width: 70%;
+  display: block;
+  background-color: lightblue;
+}
+
+.list-item {
+  width: 100%;
+  height: 50px;
+  background-color: grey;
+  margin: 5px auto;
+  color: white;
+}
