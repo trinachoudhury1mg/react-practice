@@ -18,13 +18,21 @@ function Right({ showRight, onSubmit, note, onNotePropChange }) {
     </div>
   );
 }
-function Left({ showLeft, notes, onNoteClick, onNewNoteAdd }) {
+function Left({ showLeft, notes, onNoteClick, onNewNoteAdd, onNoteDelete }) {
   return (
     <div className="left">
       <button type="button" className="btn btn-info" onClick={onNewNoteAdd}>
         New Note
       </button>
-      {showLeft ? <Notes notes={notes} onNoteClick={onNoteClick} /> : ""}
+      {showLeft ? (
+        <Notes
+          notes={notes}
+          onNoteClick={onNoteClick}
+          onNoteDelete={onNoteDelete}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
@@ -64,6 +72,15 @@ class Main extends React.Component {
     });
   };
 
+  onNoteDelete = (event) => {
+    const notesAfterDeletion = this.state.notes.filter(
+      (note) => note.id !== parseFloat(event.currentTarget.id)
+    );
+    this.setState({
+      notes: notesAfterDeletion
+    });
+  };
+
   onNotePropertyChange = (propertyField) => {
     const notesExceptCurrent = this.state.notes.filter(
       (note) => note.id !== this.state.currentNote.id
@@ -93,6 +110,7 @@ class Main extends React.Component {
           notes={this.state.notes}
           onNoteClick={this.selectNote}
           onNewNoteAdd={this.onNoteAddNew}
+          onNoteDelete={this.onNoteDelete}
         />
         <Right
           showRight={this.props.showRight}

@@ -77,3 +77,9 @@ span.content {
   color: #333;
   border-bottom: 1px solid #f0ad4e;
 }
+.left .trash-btn {
+  background: transparent !important;
+  color: black;
+  border: 0;
+  font-size: small;
+}

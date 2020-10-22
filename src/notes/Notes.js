@@ -1,5 +1,5 @@
 import React from "react";
-export function Notes({ notes, onNoteClick }) {
+export function Notes({ notes, onNoteClick, onNoteDelete }) {
   return (
     <div>
       {notes
@@ -12,8 +12,20 @@ export function Notes({ notes, onNoteClick }) {
                 onClick={onNoteClick}
                 style={{ marginTop: "10px" }}
               >
-                <div className="subject">
-                  <b>{item.subject.length ? item.subject : "New Note"}</b>
+                <div className="flex" style={{ position: "relative" }}>
+                  <div className="subject">
+                    <b>{item.subject.length ? item.subject : "New Note"}</b>
+                  </div>
+                  <div style={{ position: "absolute", right: "7px" }}>
+                    <button
+                      type="button"
+                      className="trash-btn"
+                      onClick={onNoteDelete}
+                      id={item.id}
+                    >
+                      <span className="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </div>
                 </div>
                 <div className="flex info">
                   <span>{item.modifiedOn}</span>
