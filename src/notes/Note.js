@@ -32,9 +32,9 @@ export function Note(props) {
       ) : (
         ""
       )}
-      <button type="submit" className="btn btn-success">
+      {/* <button type="submit" className="btn btn-success">
         {props.note.id ? "Update Note" : "Save Note"}{" "}
-      </button>
+      </button> */}
     </form>
   );
 }

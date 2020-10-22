@@ -17,13 +17,21 @@
   padding: 5px;
 }
 
+span.content {
+  white-space: nowrap;
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .header {
   display: block;
-  height: 6%;
+  height: 5%;
   width: 100%;
-  background-color: #093757;
+  background-color: #f0ad4e;
   color: white;
   padding: 6px;
+  border-bottom: 1px solid #f0ad4e;
   font-style: "Times New Roman";
   position: fixed;
   top: 0px;
@@ -31,33 +39,41 @@
 
 .main {
   display: flex;
-  height: 91%;
+  height: 95%;
   overflow: hidden;
   position: relative;
-  top: 48px;
+  top: 40px;
   width: 100%;
 }
 .left {
   width: 30%;
-  background-color: yellow;
+  background-color: #ffff0036;
   height: 100%;
   overflow: auto;
+  border-right: 1px solid #f0ad4e;
 }
 
 .left button {
   padding-top: 5px;
+  border-color: #f0ad4e !important;
+  color: #f5f5f5;
+  background: #f0ad4e !important;
 }
 
 .right {
   width: 70%;
   display: block;
-  background-color: lightblue;
+  padding: 20px;
+  background-color: #fcf8e3;
 }
-
+.right textarea {
+  height: 200px;
+  width: 100%;
+}
 .list-item {
   width: 100%;
   height: 50px;
-  background-color: grey;
-  margin: 5px auto;
-  color: white;
+  background-color: #fcf8e3;
+  color: #333;
+  border-bottom: 1px solid #f0ad4e;
 }

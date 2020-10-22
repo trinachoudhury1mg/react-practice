@@ -36,40 +36,25 @@ class NoteData {
   constructor() {
     this.subject = "";
     this.content = "";
+    this.id = Math.random();
+    this.modifiedOn = new Date().toLocaleDateString();
   }
 }
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
+    const newNote = new NoteData();
+    const notesToPut = JSON.parse(window.localStorage.getItem("notes")) || [];
     this.state = {
-      notes: [],
-      currentNote: new NoteData()
+      currentNote: newNote,
+      notes: [newNote, ...notesToPut]
     };
   }
 
-  onNoteSubmit = (form) => {
-    let currentNote,
-      notes = [];
-    if (form.elements.id) {
-      currentNote = this.state.notes.find(
-        (note) => note.id === parseFloat(form.elements.id.value)
-      );
-      notes = this.state.notes;
-    } else {
-      currentNote = new NoteData();
-      currentNote.id = Math.random();
-      notes = [...this.state.notes, currentNote];
-    }
-    currentNote.modifiedOn = new Date().toLocaleTimeString();
-    currentNote.subject = form.elements.subject.value;
-    currentNote.content = form.elements.content.value;
-
-    this.setState((state) => {
-      return { notes };
-    });
-    this.setState({ currentNote: new NoteData() });
-  };
+  componentDidUpdate() {
+    window.localStorage.setItem("notes", JSON.stringify(this.state.notes));
+  }
 
   selectNote = (event) => {
     this.setState({
@@ -80,16 +65,23 @@ class Main extends React.Component {
   };
 
   onNotePropertyChange = (propertyField) => {
+    const notesExceptCurrent = this.state.notes.filter(
+      (note) => note.id !== this.state.currentNote.id
+    );
+    const noteToUpdate = Object.assign({}, this.state.currentNote, {
+      [propertyField.target.id]: propertyField.target.value
+    });
     this.setState({
-      currentNote: Object.assign({}, this.state.currentNote, {
-        [propertyField.target.id]: propertyField.target.value
-      })
+      currentNote: noteToUpdate,
+      notes: [noteToUpdate, ...notesExceptCurrent]
     });
   };
 
   onNoteAddNew = () => {
+    const newNote = new NoteData();
     this.setState({
-      currentNote: new NoteData()
+      currentNote: newNote,
+      notes: [newNote, ...this.state.notes]
     });
   };
 
